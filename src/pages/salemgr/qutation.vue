@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tab :line-width=2 active-color='#fc378c' :index.sync="index">
+    <tab :line-width=1 active-color='#04be02' :index.sync="index">
       <tab-item class="vux-center" :selected="selected === $index" v-for="item in itemlist" @click="selected = $index">{{item}}</tab-item>
     </tab>
       <swiper id="swipecontent" :index.sync="index" :height="xheight|fixheight" :show-dots="false">

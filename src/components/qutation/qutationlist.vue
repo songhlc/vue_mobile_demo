@@ -9,10 +9,10 @@
           <span class="vux-label-desc">{{item.enterpriseName}}</span>
         </span>
         <div>
-          <button v-link="{path:'/qutationedit?id='+item.id}" class="weui_btn weui_btn_mini weui_btn_primary weui_btn_plain_primary" v-show="item | expiredate 'item.status'">
+          <button v-link="{path:'/qutationedit?id='+item.id+'&priceid=null'}" class="weui_btn weui_btn_mini weui_btn_primary weui_btn_plain_primary" v-show="item | expiredate 'item.status'">
             报价
           </button>
-          <button v-link="{path:'/qutationedit?id='+item.priceOfferid}" class="weui_btn weui_btn_mini weui_btn_primary weui_btn_plain_primary" v-show="item.qtexpiredateStatus==0&&item.priceCommit==2">
+          <button v-link="{path:'/qutationedit?id='+item.id+'&priceid='+item.priceOfferid}" class="weui_btn weui_btn_mini weui_btn_primary weui_btn_plain_primary" v-show="item.qtexpiredateStatus==0&&item.priceCommit==2">
             修改
           </button>
         </div>

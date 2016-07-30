@@ -50,8 +50,24 @@ body {
     margin:0;
     list-style: none;
   }
+  .m-t-sm{
+    margin-top:5px;
+  }
+  .m-t-md{
+    margin-top: 10px;
+  }
+.text-normal{
+  font-size: 13px !important;
+}
+.text-larger{
+  font-size:15px !important;
+}
+.text-big{
+  font-size: 17px !important;
+}
 </style>
 <style>
   @import '~vux/dist/vux.css';
-  @import 'css/font-awesome-4.5.0/css/font-awesome.min.css';
+  @import 'vendor/font-awesome-4.5.0/css/font-awesome.min.css';
+  @import 'css/vuxfix.css';
 </style>

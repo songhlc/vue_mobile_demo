@@ -3,7 +3,9 @@
   <group>
     <cell>
       <div slot="after-title">
+        <span>{{detail.subject}}</span><br>
         <span>询价企业:{{detail.purCorpName}}</span><br>
+        <span>截止日期:{{detail.qtexpiredate}}</span>
       </div>
     </cell>
   </group>
@@ -11,16 +13,24 @@
     <cell>
       <div slot="after-title">
         <p>{{item.productName}}</p>
-        <span class="c-price">{{ item.price | currency}}</span> <span>/{{item.unit}}</span><br>
+        <p v-show="!editable"><span class="c-price">{{ item.price | currency}}</span> <span>/{{item.unit}}</span></p>
       </div>
       <div>
+        <x-number  v-show="editable" title="单价:￥" :value.sync="item.price" :min="0" class="nopadding"></x-number>
+      </div>
+      <div v-show="!editable">
+        <span>数量:{{item.amount}}{{item.unit}}</span>
+      </div>
+      <div v-show="editable" class="m-t-sm">
         <x-number title="数量&nbsp;" :value.sync="item.amount" :min="0" class="nopadding"></x-number>
       </div>
     </cell>
     <cell>
       <div slot="after-title">
+        <p class="text-normal">金额: <span>{{ item.price * item.amount | currency}}</span></p>
       </div>
-      <p>金额: <span>{{ item.price * item.amount | currency}}</span></p>
+      <button class="weui_btn weui_btn_mini weui_btn_primary weui_btn_plain_primary" @click="editablechange">{{!editable ? '修改' : '完成'}}</button>
+
 
     </cell>
   </group>
@@ -62,7 +72,8 @@
     data () {
       return {
         show: false,
-        detail: {}
+        detail: {},
+        editable: false
       }
     },
     ready () {
@@ -73,9 +84,12 @@
         this.$data.show = true
       },
       querydetail () {
-        service.qutationdetail(this.$route.query.id, (response) => {
+        service.qutationdetail(this.$route.query.id, this.$route.query.priceid, (response) => {
           this.detail = response.data
         })
+      },
+      editablechange () {
+        this.editable = !this.editable
       }
     },
     computed: {
@@ -105,4 +119,8 @@
     z-index: 501;
     height: 62px;
   }
+  .vux-number-input{
+    font-size: 13px;
+  }
+
 </style>
